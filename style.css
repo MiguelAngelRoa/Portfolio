@@ -1,0 +1,99 @@
+/*
+  Theme Name: MiguelRoaPortfolio
+  Author: Miguel Roa
+  Descrsiption: Tema personalizado para mi portafolio.
+  Version: 1.0
+  License: GNU General Public License v3 or later
+  License URI: http://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+:root {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+/*Para el scroll bar*/
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgb(216, 209, 209);
+}
+/*Fin scroll bar*/
+
+main {
+  margin-left: 5rem;
+  padding: 1rem;
+}
+
+/*Para navbar*/
+.logo {
+  height: 50px;
+  width: 50px;
+}
+
+.logo img{
+  height: 50px;
+  width: 50px;
+}
+
+.navbar {
+  position: fixed;
+  background-color: black;
+  transition: width 600ms ease;
+  height: 100vh;
+  border: 1px solid white;
+  border-top: none;
+  border-bottom: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-90deg);
+}
+
+.nav-item{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+/*Fin de navbar*/
+
