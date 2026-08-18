@@ -28,7 +28,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           Hola, soy{' '}
-          <span className="hero__name glow-text">Tu Nombre</span>
+          <span className="hero__name glow-text">Miguel Roa</span>
         </motion.h1>
 
         <motion.p
@@ -62,10 +62,10 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 1.0 }}
         >
-          <a href="https://github.com/" target="_blank" rel="noreferrer" className="hero__social-link">
+          <a href="https://github.com/MiguelAngelRoa" target="_blank" rel="noreferrer" className="hero__social-link">
             <FiGithub size={18} />
           </a>
-          <a href="https://linkedin.com/" target="_blank" rel="noreferrer" className="hero__social-link">
+          <a href="https://www.linkedin.com/in/miguel-roa-709299274/" target="_blank" rel="noreferrer" className="hero__social-link">
             <FiLinkedin size={18} />
           </a>
         </motion.div>

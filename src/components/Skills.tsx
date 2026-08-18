@@ -1,24 +1,22 @@
 import { motion } from 'framer-motion';
 import { useInView } from './useInView';
 import {
-  SiReact, SiTypescript, SiJavascript, SiNodedotjs, SiTailwindcss,
-  SiGit, SiMongodb, SiPostgresql, SiDocker, SiHtml5, SiCss, SiVite,
+  SiTypescript, SiJavascript, SiPostgresql, SiMysql,
+  SiPhp, SiReact,
 } from 'react-icons/si';
+import { FaJava, FaBrain } from 'react-icons/fa';
 import './Skills.css';
 
 const skills = [
-  { name: 'React', icon: <SiReact />, level: 90, color: '#61DAFB' },
-  { name: 'TypeScript', icon: <SiTypescript />, level: 85, color: '#3178C6' },
-  { name: 'JavaScript', icon: <SiJavascript />, level: 90, color: '#F7DF1E' },
-  { name: 'Node.js', icon: <SiNodedotjs />, level: 80, color: '#339933' },
-  { name: 'Tailwind CSS', icon: <SiTailwindcss />, level: 88, color: '#06B6D4' },
-  { name: 'Git', icon: <SiGit />, level: 82, color: '#F05032' },
-  { name: 'MongoDB', icon: <SiMongodb />, level: 75, color: '#47A248' },
-  { name: 'PostgreSQL', icon: <SiPostgresql />, level: 72, color: '#4169E1' },
-  { name: 'Docker', icon: <SiDocker />, level: 65, color: '#2496ED' },
-  { name: 'HTML5', icon: <SiHtml5 />, level: 95, color: '#E34F26' },
-  { name: 'CSS3', icon: <SiCss />, level: 90, color: '#1572B6' },
-  { name: 'Vite', icon: <SiVite />, level: 85, color: '#BD34FE' },
+  { name: 'TypeScript', icon: <SiTypescript />, level: 92, color: '#3178C6' },
+  { name: 'JavaScript', icon: <SiJavascript />, level: 95, color: '#F7DF1E' },
+  { name: 'React', icon: <SiReact />, level: 95, color: '#61DAFB' },
+  { name: 'React Native', icon: <SiReact />, level: 92, color: '#61DAFB' },
+  { name: 'PostgreSQL', icon: <SiPostgresql />, level: 88, color: '#4169E1' },
+  { name: 'MySQL', icon: <SiMysql />, level: 72, color: '#4479A1' },
+  { name: 'Java', icon: <FaJava />, level: 90, color: '#ED8B00' },
+  { name: 'PHP', icon: <SiPhp />, level: 65, color: '#777BB4' },
+  { name: 'IA / Machine Learning', icon: <FaBrain />, level: 70, color: '#00ff88' },
 ];
 
 export default function Skills() {

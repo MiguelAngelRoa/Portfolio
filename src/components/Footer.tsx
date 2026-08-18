@@ -1,4 +1,4 @@
-import { FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import './Footer.css';
 
 export default function Footer() {
@@ -8,20 +8,20 @@ export default function Footer() {
       <div className="container footer__inner">
         <div className="footer__left">
           <span className="footer__logo">
-            <span className="footer__bracket">&lt;</span>dev<span className="footer__dot">.</span>/&gt;
+            <span className="footer__bracket">&lt;</span>miguel<span className="footer__dot">.dev</span>/&gt;
           </span>
-          <p className="footer__copy">&copy; {new Date().getFullYear()} Todos los derechos reservados.</p>
+          <p className="footer__copy">&copy; {new Date().getFullYear()} Miguel Roa. Todos los derechos reservados.</p>
         </div>
 
         <div className="footer__links">
-          <a href="https://github.com/" target="_blank" rel="noreferrer" className="footer__social">
+          <a href="https://github.com/MiguelAngelRoa" target="_blank" rel="noreferrer" className="footer__social">
             <FiGithub size={18} />
           </a>
-          <a href="https://linkedin.com/" target="_blank" rel="noreferrer" className="footer__social">
+          <a href="https://www.linkedin.com/in/miguel-roa-709299274/" target="_blank" rel="noreferrer" className="footer__social">
             <FiLinkedin size={18} />
           </a>
-          <a href="https://twitter.com/" target="_blank" rel="noreferrer" className="footer__social">
-            <FiTwitter size={18} />
+          <a href="mailto:miguel.roa.dev@gmail.com" className="footer__social">
+            <FiMail size={18} />
           </a>
         </div>
       </div>

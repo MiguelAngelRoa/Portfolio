@@ -135,14 +135,27 @@
   align-self: flex-start;
 }
 
-.contact__form-btn:hover {
+.contact__form-btn:hover:not(:disabled) {
   background: transparent;
   color: var(--green);
   box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
 }
 
-.contact__form-btn-sent {
-  color: var(--black);
+.contact__form-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contact__form-btn--sent {
+  background: transparent;
+  color: var(--green) !important;
+  border-color: var(--green);
+}
+
+.contact__form-btn--error {
+  background: transparent;
+  color: #ff5f57 !important;
+  border-color: #ff5f57;
 }
 
 @media (max-width: 768px) {

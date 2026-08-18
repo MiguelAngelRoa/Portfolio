@@ -4,9 +4,7 @@ import { FiCode, FiLayout, FiServer } from 'react-icons/fi';
 import './About.css';
 
 const stats = [
-  { number: '2+', label: 'Anos exp.' },
-  { number: '10+', label: 'Proyectos' },
-  { number: '5+', label: 'Tecnologias' },
+  { number: '6+', label: 'Anos de experiencia' },
 ];
 
 const services = [
@@ -33,8 +31,8 @@ export default function About() {
             <span className="about__highlight">codigo</span>
           </h2>
           <p className="about__desc">
-            Desarrollador apasionado por crear soluciones web modernas, limpias y funcionales.
-            Me encanta aprender nuevas tecnologias y enfrentar retos que me hagan crecer profesionalmente.
+            Desarrollador con experiencia en creacion de soluciones web y moviles.
+            Me gusta enfrentar retos que me hagan crecer profesionalmente.
           </p>
         </motion.div>
 

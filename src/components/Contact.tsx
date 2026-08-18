@@ -4,16 +4,40 @@ import { useInView } from './useInView';
 import { FiMail, FiMapPin, FiSend } from 'react-icons/fi';
 import './Contact.css';
 
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'YOUR_FORM_ID';
+
 export default function Contact() {
   const [ref, inView] = useInView({ threshold: 0.2 });
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormState({ name: '', email: '', message: '' });
+    setStatus('sending');
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus('sent');
+        setFormState({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 4000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -41,18 +65,18 @@ export default function Contact() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="contact__info-card glass">
+            <a href="mailto:miguel.roa.dev@gmail.com" className="contact__info-card glass">
               <FiMail className="contact__info-icon" />
               <div>
                 <span className="contact__info-label">Email</span>
-                <span className="contact__info-value">hola@tuemail.dev</span>
+                <span className="contact__info-value">miguel.roa.dev@gmail.com</span>
               </div>
-            </div>
+            </a>
             <div className="contact__info-card glass">
               <FiMapPin className="contact__info-icon" />
               <div>
                 <span className="contact__info-label">Ubicacion</span>
-                <span className="contact__info-value">Tu Ciudad, Pais</span>
+                <span className="contact__info-value">Puerto Ordaz, Venezuela</span>
               </div>
             </div>
           </motion.div>
@@ -60,6 +84,8 @@ export default function Contact() {
           <motion.form
             className="contact__form glass-green"
             onSubmit={handleSubmit}
+            action={`https://formspree.io/f/${FORMSPREE_ID}`}
+            method="POST"
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -68,6 +94,7 @@ export default function Contact() {
               <label className="contact__form-label">Nombre</label>
               <input
                 type="text"
+                name="name"
                 className="contact__form-input"
                 placeholder="Tu nombre"
                 value={formState.name}
@@ -79,6 +106,7 @@ export default function Contact() {
               <label className="contact__form-label">Email</label>
               <input
                 type="email"
+                name="email"
                 className="contact__form-input"
                 placeholder="tu@email.com"
                 value={formState.email}
@@ -89,6 +117,7 @@ export default function Contact() {
             <div className="contact__form-group">
               <label className="contact__form-label">Mensaje</label>
               <textarea
+                name="message"
                 className="contact__form-textarea"
                 placeholder="Cuentame sobre tu proyecto..."
                 rows={5}
@@ -99,13 +128,15 @@ export default function Contact() {
             </div>
             <motion.button
               type="submit"
-              className="contact__form-btn"
+              className={`contact__form-btn ${status === 'sent' ? 'contact__form-btn--sent' : ''} ${status === 'error' ? 'contact__form-btn--error' : ''}`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              disabled={status === 'sending'}
             >
-              {submitted ? (
-                <span className="contact__form-btn-sent">Mensaje enviado!</span>
-              ) : (
+              {status === 'sending' && 'Enviando...'}
+              {status === 'sent' && 'Mensaje enviado!'}
+              {status === 'error' && 'Error, intenta de nuevo'}
+              {status === 'idle' && (
                 <>
                   <FiSend size={16} />
                   Enviar mensaje

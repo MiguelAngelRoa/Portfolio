@@ -32,8 +32,8 @@ export default function Navbar() {
       <div className="navbar__inner">
         <a href="#hero" className="navbar__logo">
           <span className="navbar__logo-bracket">&lt;</span>
-          <span className="navbar__logo-name">dev</span>
-          <span className="navbar__logo-dot">.</span>
+          <span className="navbar__logo-name">miguel</span>
+          <span className="navbar__logo-dot">.dev</span>
           <span className="navbar__logo-bracket">/&gt;</span>
         </a>
 

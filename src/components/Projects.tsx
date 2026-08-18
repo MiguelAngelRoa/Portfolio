@@ -1,57 +1,43 @@
 import { motion } from 'framer-motion';
 import { useInView } from './useInView';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
-import type { Project } from '../types';
 import './Projects.css';
 
-const projects: Project[] = [
+interface ProjectItem {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  link?: string;
+  github?: string;
+  image?: string;
+  video?: string;
+}
+
+const projects: ProjectItem[] = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'Plataforma de comercio electronico con carrito de compras, pasarela de pagos y panel de administracion.',
-    tags: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
-    link: '#',
-    github: '#',
+    title: 'IRD Balancing VE',
+    description: 'Sitio web corporativo para empresa de balanceo y servicios industriales. Desarrollado con React puro para un rendimiento optimo y una experiencia de navegacion fluida.',
+    tags: ['React', 'JavaScript', 'Responsive Design'],
+    link: 'https://irdbalancingve.com/',
+    image: '/ird.png',
   },
   {
     id: 2,
-    title: 'Task Manager App',
-    description: 'Aplicacion de gestion de tareas con drag & drop, filtros y modo oscuro/claro.',
-    tags: ['React', 'TypeScript', 'Tailwind CSS'],
-    link: '#',
-    github: '#',
+    title: 'Toro Purpura',
+    description: 'Plataforma educativa de inversiones y trading. WordPress con tema personalizado, secciones de guias, cursos online, blog y newsletter para la comunidad financiera.',
+    tags: ['WordPress', 'PHP', 'Custom Theme', 'SEO'],
+    link: 'https://www.toropurpura.com/',
+    image: '/toropurpura.png',
   },
   {
     id: 3,
-    title: 'Weather Dashboard',
-    description: 'Dashboard del clima con datos en tiempo real, graficas interactivas y pronostico a 7 dias.',
-    tags: ['React', 'Chart.js', 'API REST'],
-    link: '#',
-    github: '#',
-  },
-  {
-    id: 4,
-    title: 'Portfolio v2',
-    description: 'Este mismo portafolio, disenado con animaciones fluidas y texturas de puntos.',
-    tags: ['React', 'TypeScript', 'Framer Motion'],
-    link: '#',
-    github: '#',
-  },
-  {
-    id: 5,
-    title: 'Chat Application',
-    description: 'Aplicacion de chat en tiempo real con WebSockets, salas y notificaciones.',
-    tags: ['React', 'Socket.io', 'Express'],
-    link: '#',
-    github: '#',
-  },
-  {
-    id: 6,
-    title: 'Blog CMS',
-    description: 'Sistema de gestion de contenido para blogs con editor markdown y deploy automatico.',
-    tags: ['Next.js', 'TypeScript', 'PostgreSQL'],
-    link: '#',
-    github: '#',
+    title: 'Rutinapp',
+    description: 'App movil para gestionar rutinas de ejercicio con temporizador de descanso, agenda semanal, recordatorios y modo oscuro. Desarrollada con Expo y TypeScript.',
+    tags: ['React Native', 'Expo', 'TypeScript', 'AsyncStorage'],
+    github: 'https://github.com/MiguelAngelRoa/Rutinapp',
+    video: '/rutinapp-preview.mp4',
   },
 ];
 
@@ -75,50 +61,81 @@ export default function Projects() {
         </motion.div>
 
         <div className="projects__grid">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              className="projects__card glass"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -8, transition: { duration: 0.25 } }}
-            >
-              <div className="projects__card-top">
-                <div className="projects__card-dots">
-                  <span />
-                  <span />
-                  <span />
+          {projects.map((project, i) => {
+            const cardUrl = project.link || project.github || '#';
+            return (
+              <motion.a
+                key={project.id}
+                href={cardUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="projects__card glass"
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                whileHover={{ y: -8, transition: { duration: 0.25 } }}
+              >
+                <div className="projects__card-top">
+                  <div className="projects__card-dots">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div className="projects__card-links">
+                    {project.github && (
+                      <span className="projects__card-link" onClick={(e) => e.stopPropagation()}>
+                        <FiGithub size={15} />
+                      </span>
+                    )}
+                    {project.link && (
+                      <span className="projects__card-link" onClick={(e) => e.stopPropagation()}>
+                        <FiExternalLink size={15} />
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="projects__card-links">
-                  {project.github && (
-                    <a href={project.github} className="projects__card-link" target="_blank" rel="noreferrer">
-                      <FiGithub size={15} />
-                    </a>
+
+                <div className="projects__card-preview">
+                  {project.video ? (
+                    <video
+                      className="projects__card-video"
+                      src={project.video}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+                      onMouseLeave={(e) => {
+                        const v = e.target as HTMLVideoElement;
+                        v.pause();
+                        v.currentTime = 0;
+                      }}
+                    />
+                  ) : project.image ? (
+                    <img
+                      className="projects__card-img projects__card-img--loaded"
+                      src={project.image}
+                      alt={`Screenshot de ${project.title}`}
+                    />
+                  ) : (
+                    <div className="projects__card-preview-inner">
+                      <span className="projects__card-preview-text">{project.title}</span>
+                    </div>
                   )}
-                  <a href={project.link} className="projects__card-link" target="_blank" rel="noreferrer">
-                    <FiExternalLink size={15} />
-                  </a>
                 </div>
-              </div>
 
-              <div className="projects__card-preview">
-                <div className="projects__card-preview-inner">
-                  <span className="projects__card-preview-text">{project.title}</span>
+                <div className="projects__card-body">
+                  <h3 className="projects__card-title">{project.title}</h3>
+                  <p className="projects__card-desc">{project.description}</p>
+                  <div className="projects__card-tags">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="projects__card-tag">{tag}</span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              <div className="projects__card-body">
-                <h3 className="projects__card-title">{project.title}</h3>
-                <p className="projects__card-desc">{project.description}</p>
-                <div className="projects__card-tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="projects__card-tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.a>
+            );
+          })}
         </div>
       </div>
     </section>
