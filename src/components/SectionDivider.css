@@ -1,0 +1,26 @@
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 0 2rem;
+}
+
+.divider--flipped {
+  transform: rotate(180deg);
+}
+
+.divider__line {
+  height: 1px;
+  flex: 1;
+  max-width: 200px;
+  background: linear-gradient(90deg, transparent, var(--green-dim), transparent);
+}
+
+.divider__dot {
+  width: 5px;
+  height: 5px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
