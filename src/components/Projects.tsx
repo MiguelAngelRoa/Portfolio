@@ -5,6 +5,8 @@ import { useLanguage } from '../i18n/LanguageContext';
 import type { TranslationKey } from '../i18n/translations';
 import './Projects.css';
 
+const ASSET_PATH = import.meta.env.BASE_URL;
+
 interface ProjectItem {
   id: number;
   title: string;
@@ -23,7 +25,7 @@ const projects: ProjectItem[] = [
     descKey: 'projects.ird.desc',
     tags: ['React', 'JavaScript', 'Responsive Design'],
     link: 'https://irdbalancingve.com/',
-    image: '/ird.png',
+    image: `${ASSET_PATH}ird.png`,
   },
   {
     id: 2,
@@ -31,7 +33,7 @@ const projects: ProjectItem[] = [
     descKey: 'projects.toro.desc',
     tags: ['WordPress', 'PHP', 'Custom Theme', 'SEO'],
     link: 'https://www.toropurpura.com/',
-    image: '/toropurpura.png',
+    image: `${ASSET_PATH}toropurpura.png`,
   },
   {
     id: 3,
@@ -39,7 +41,7 @@ const projects: ProjectItem[] = [
     descKey: 'projects.rutinapp.desc',
     tags: ['React Native', 'Expo', 'TypeScript', 'AsyncStorage'],
     github: 'https://github.com/MiguelAngelRoa/Rutinapp',
-    video: '/rutinapp-preview.mp4',
+    video: `${ASSET_PATH}rutinapp-preview.mp4`,
   },
 ];
 
