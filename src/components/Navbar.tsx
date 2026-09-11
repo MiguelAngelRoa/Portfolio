@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
-import type { NavLink } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
+import type { TranslationKey } from '../i18n/translations';
 import './Navbar.css';
 
-const links: NavLink[] = [
-  { label: 'Inicio', href: '#hero' },
-  { label: 'Sobre mi', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Proyectos', href: '#projects' },
-  { label: 'Contacto', href: '#contact' },
+const links: { key: TranslationKey; href: string }[] = [
+  { key: 'nav.home', href: '#hero' },
+  { key: 'nav.about', href: '#about' },
+  { key: 'nav.skills', href: '#skills' },
+  { key: 'nav.projects', href: '#projects' },
+  { key: 'nav.contact', href: '#contact' },
 ];
 
 export default function Navbar() {
+  const { tStr } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -47,7 +49,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i, duration: 0.4 }}
             >
-              {link.label}
+              {tStr(link.key)}
             </motion.a>
           ))}
         </div>
@@ -76,7 +78,7 @@ export default function Navbar() {
                 transition={{ delay: 0.05 * i }}
                 onClick={() => setMobileOpen(false)}
               >
-                <span className="navbar__mobile-index">0{i + 1}.</span> {link.label}
+                <span className="navbar__mobile-index">0{i + 1}.</span> {tStr(link.key)}
               </motion.a>
             ))}
           </motion.div>

@@ -26,6 +26,7 @@
   align-items: flex-start;
   gap: 1.5rem;
   padding-top: 6rem;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
 }
 
 .hero__badge {
@@ -59,6 +60,8 @@
   font-weight: 700;
   line-height: 1.1;
   color: var(--white);
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .hero__name {
@@ -95,6 +98,7 @@
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 .hero__btn {
@@ -179,5 +183,31 @@
 @media (max-width: 768px) {
   .hero__content {
     padding-top: 5rem;
+    gap: 1.25rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 8.5vw, 3rem);
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero__badge {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.9rem;
   }
 }
