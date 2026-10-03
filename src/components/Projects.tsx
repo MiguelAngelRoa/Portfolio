@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import { useInView } from './useInView';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
+import { useLanguage } from '../i18n/LanguageContext';
+import type { TranslationKey } from '../i18n/translations';
 import './Projects.css';
+
+const ASSET_PATH = import.meta.env.BASE_URL;
 
 interface RepoLink {
   label: string;
@@ -11,7 +15,7 @@ interface RepoLink {
 interface ProjectItem {
   id: number;
   title: string;
-  description: string;
+  descKey: TranslationKey;
   tags: string[];
   link?: string;
   github?: string;
@@ -20,47 +24,46 @@ interface ProjectItem {
   video?: string;
 }
 
-const base = import.meta.env.BASE_URL;
-
 const projects: ProjectItem[] = [
   {
     id: 1,
     title: 'IRD Balancing VE',
-    description: 'Sitio web corporativo para empresa de balanceo y servicios industriales. Desarrollado con React puro para un rendimiento optimo y una experiencia de navegacion fluida.',
+    descKey: 'projects.ird.desc',
     tags: ['React', 'JavaScript', 'Responsive Design'],
     link: 'https://irdbalancingve.com/',
-    image: `${base}ird.png`,
+    image: `${ASSET_PATH}ird.png`,
   },
   {
     id: 2,
     title: 'Toro Purpura',
-    description: 'Plataforma educativa de inversiones y trading. WordPress con tema personalizado, secciones de guias, cursos online, blog y newsletter para la comunidad financiera.',
+    descKey: 'projects.toro.desc',
     tags: ['WordPress', 'PHP', 'Custom Theme', 'SEO'],
     link: 'https://www.toropurpura.com/',
-    image: `${base}toropurpura.png`,
+    image: `${ASSET_PATH}toropurpura.png`,
   },
   {
     id: 3,
     title: 'Rutinapp',
-    description: 'App movil para gestionar rutinas de ejercicio con temporizador de descanso, agenda semanal, recordatorios y modo oscuro. Desarrollada con Expo y TypeScript.',
+    descKey: 'projects.rutinapp.desc',
     tags: ['React Native', 'Expo', 'TypeScript', 'AsyncStorage'],
     github: 'https://github.com/MiguelAngelRoa/Rutinapp',
-    video: `${base}rutinapp-preview.mp4`,
+    video: `${ASSET_PATH}rutinapp-preview.mp4`,
   },
   {
     id: 4,
     title: 'VenecoBot',
-    description: 'Bot de WhatsApp con IA que entiende la jerga venezolana y resuelve tareas de interes diario, como consultar el dolar oficial (BCV), el euro y el promedio del dolar en Binance P2P. Usa LangGraph para enrutar cada mensaje a agentes especializados desde un supervisor basado en grafos.',
+    descKey: 'projects.venecobot.desc',
     tags: ['React', 'TypeScript', 'LangGraph', 'Gemini', 'WhatsApp'],
     repos: [
       { label: 'Backend', url: 'https://github.com/MiguelAngelRoa/VenecoBotBack' },
       { label: 'Frontend', url: 'https://github.com/MiguelAngelRoa/VenecoBotFront' },
     ],
-    image: `${base}venecobot.png`,
+    image: `${ASSET_PATH}venecobot.png`,
   },
 ];
 
 export default function Projects() {
+  const { tStr } = useLanguage();
   const [ref, inView] = useInView({ threshold: 0.1 });
 
   return (
@@ -73,9 +76,9 @@ export default function Projects() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="projects__label">// Proyectos</span>
+          <span className="projects__label">{tStr('projects.label')}</span>
           <h2 className="projects__title">
-            Mis <span className="projects__highlight">trabajos</span> recientes
+            {tStr('projects.titlePrefix')} <span className="projects__highlight">{tStr('projects.titleHighlight')}</span> {tStr('projects.titleSuffix')}
           </h2>
         </motion.div>
 
@@ -173,7 +176,7 @@ export default function Projects() {
                     <img
                       className="projects__card-img projects__card-img--loaded"
                       src={project.image}
-                      alt={`Screenshot de ${project.title}`}
+                      alt={`${tStr('projects.alt')} ${project.title}`}
                     />
                   ) : (
                     <div className="projects__card-preview-inner">
@@ -184,7 +187,7 @@ export default function Projects() {
 
                 <div className="projects__card-body">
                   <h3 className="projects__card-title">{project.title}</h3>
-                  <p className="projects__card-desc">{project.description}</p>
+                  <p className="projects__card-desc">{tStr(project.descKey)}</p>
                   <div className="projects__card-tags">
                     {project.tags.map((tag) => (
                       <span key={tag} className="projects__card-tag">{tag}</span>

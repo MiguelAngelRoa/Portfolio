@@ -1,3 +1,4 @@
+import { LanguageProvider } from './i18n/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -6,10 +7,11 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SectionDivider from './components/SectionDivider';
+import LanguageButton from './components/LanguageButton';
 
 export default function App() {
   return (
-    <>
+    <LanguageProvider>
       <Navbar />
       <Hero />
       <SectionDivider />
@@ -21,6 +23,7 @@ export default function App() {
       <SectionDivider />
       <Contact />
       <Footer />
-    </>
+      <LanguageButton />
+    </LanguageProvider>
   );
 }

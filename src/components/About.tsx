@@ -1,19 +1,22 @@
 import { motion } from 'framer-motion';
 import { useInView } from './useInView';
 import { FiCode, FiLayout, FiServer } from 'react-icons/fi';
+import { useLanguage } from '../i18n/LanguageContext';
+import type { TranslationKey } from '../i18n/translations';
 import './About.css';
 
-const stats = [
-  { number: '6+', label: 'Anos de experiencia' },
+const stats: { number: string; labelKey: TranslationKey }[] = [
+  { number: '6+', labelKey: 'about.statYears' },
 ];
 
-const services = [
-  { icon: <FiLayout />, title: 'Frontend', desc: 'Interfaces modernas y responsivas con React, TypeScript y animaciones fluidas.' },
-  { icon: <FiServer />, title: 'Backend', desc: 'APIs robustas y escalables con Node.js, Express y bases de datos.' },
-  { icon: <FiCode />, title: 'Full Stack', desc: 'Soluciones completas de principio a fin, integrando todo el ecosistema.' },
+const services: { icon: React.ReactNode; titleKey: TranslationKey; descKey: TranslationKey }[] = [
+  { icon: <FiLayout />, titleKey: 'about.service.frontend.title', descKey: 'about.service.frontend.desc' },
+  { icon: <FiServer />, titleKey: 'about.service.backend.title', descKey: 'about.service.backend.desc' },
+  { icon: <FiCode />, titleKey: 'about.service.fullstack.title', descKey: 'about.service.fullstack.desc' },
 ];
 
 export default function About() {
+  const { tStr } = useLanguage();
   const [ref, inView] = useInView({ threshold: 0.2 });
 
   return (
@@ -25,28 +28,25 @@ export default function About() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="about__label">// Sobre mi</span>
+          <span className="about__label">{tStr('about.label')}</span>
           <h2 className="about__title">
-            Transformo ideas en{' '}
-            <span className="about__highlight">codigo</span>
+            {tStr('about.titlePrefix')}{' '}
+            <span className="about__highlight">{tStr('about.titleHighlight')}</span>
           </h2>
-          <p className="about__desc">
-            Desarrollador con experiencia en creacion de soluciones web y moviles.
-            Me gusta enfrentar retos que me hagan crecer profesionalmente.
-          </p>
+          <p className="about__desc">{tStr('about.desc')}</p>
         </motion.div>
 
         <div className="about__stats">
           {stats.map((s, i) => (
             <motion.div
-              key={s.label}
+              key={s.labelKey}
               className="about__stat glass"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
             >
               <span className="about__stat-number">{s.number}</span>
-              <span className="about__stat-label">{s.label}</span>
+              <span className="about__stat-label">{tStr(s.labelKey)}</span>
             </motion.div>
           ))}
         </div>
@@ -54,7 +54,7 @@ export default function About() {
         <div className="about__services">
           {services.map((s, i) => (
             <motion.div
-              key={s.title}
+              key={s.titleKey}
               className="about__service glass-green"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -62,8 +62,8 @@ export default function About() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="about__service-icon">{s.icon}</div>
-              <h3 className="about__service-title">{s.title}</h3>
-              <p className="about__service-desc">{s.desc}</p>
+              <h3 className="about__service-title">{tStr(s.titleKey)}</h3>
+              <p className="about__service-desc">{tStr(s.descKey)}</p>
             </motion.div>
           ))}
         </div>

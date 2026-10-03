@@ -5,9 +5,19 @@ import {
   SiPhp, SiReact,
 } from 'react-icons/si';
 import { FaJava, FaBrain } from 'react-icons/fa';
+import { useLanguage } from '../i18n/LanguageContext';
+import type { TranslationKey } from '../i18n/translations';
 import './Skills.css';
 
-const skills = [
+interface SkillItem {
+  name: string;
+  nameKey?: TranslationKey;
+  icon: React.ReactNode;
+  level: number;
+  color: string;
+}
+
+const skills: SkillItem[] = [
   { name: 'TypeScript', icon: <SiTypescript />, level: 92, color: '#3178C6' },
   { name: 'JavaScript', icon: <SiJavascript />, level: 95, color: '#F7DF1E' },
   { name: 'React', icon: <SiReact />, level: 95, color: '#61DAFB' },
@@ -16,10 +26,11 @@ const skills = [
   { name: 'MySQL', icon: <SiMysql />, level: 72, color: '#4479A1' },
   { name: 'Java', icon: <FaJava />, level: 90, color: '#ED8B00' },
   { name: 'PHP', icon: <SiPhp />, level: 65, color: '#777BB4' },
-  { name: 'IA / Machine Learning', icon: <FaBrain />, level: 70, color: '#00ff88' },
+  { name: 'AI / Machine Learning', nameKey: 'skills.ai', icon: <FaBrain />, level: 70, color: '#00ff88' },
 ];
 
 export default function Skills() {
+  const { tStr } = useLanguage();
   const [ref, inView] = useInView({ threshold: 0.15 });
 
   return (
@@ -31,9 +42,9 @@ export default function Skills() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="skills__label">// Skills</span>
+          <span className="skills__label">{tStr('skills.label')}</span>
           <h2 className="skills__title">
-            Mis <span className="skills__highlight">tecnologias</span>
+            {tStr('skills.titlePrefix')} <span className="skills__highlight">{tStr('skills.titleHighlight')}</span>
           </h2>
         </motion.div>
 
@@ -54,7 +65,7 @@ export default function Skills() {
               <div className="skills__card-icon" style={{ color: skill.color }}>
                 {skill.icon}
               </div>
-              <span className="skills__card-name">{skill.name}</span>
+              <span className="skills__card-name">{skill.nameKey ? tStr(skill.nameKey) : skill.name}</span>
               <div className="skills__bar">
                 <motion.div
                   className="skills__bar-fill"

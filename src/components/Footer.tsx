@@ -1,7 +1,9 @@
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { useLanguage } from '../i18n/LanguageContext';
 import './Footer.css';
 
 export default function Footer() {
+  const { tStr } = useLanguage();
   return (
     <footer className="footer">
       <div className="footer__dots" />
@@ -10,7 +12,7 @@ export default function Footer() {
           <span className="footer__logo">
             <span className="footer__bracket">&lt;</span>miguel<span className="footer__dot">.dev</span>/&gt;
           </span>
-          <p className="footer__copy">&copy; {new Date().getFullYear()} Miguel Roa. Todos los derechos reservados.</p>
+          <p className="footer__copy">&copy; {new Date().getFullYear()} Miguel Roa. {tStr('footer.rights')}</p>
         </div>
 
         <div className="footer__links">

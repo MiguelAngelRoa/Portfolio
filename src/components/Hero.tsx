@@ -1,9 +1,13 @@
+import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowDown, FiGithub, FiLinkedin } from 'react-icons/fi';
 import DotField from './DotField';
+import { useLanguage } from '../i18n/LanguageContext';
 import './Hero.css';
 
 export default function Hero() {
+  const { tStr, tSegs } = useLanguage();
+
   return (
     <section id="hero" className="hero">
       <DotField count={100} color="rgba(0,255,136,0.07)" maxSize={2.5} />
@@ -18,7 +22,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <span className="hero__badge-dot" />
-          Disponible para trabajar
+          {tStr('hero.badge')}
         </motion.div>
 
         <motion.h1
@@ -27,7 +31,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
-          Hola, soy{' '}
+          {tStr('hero.greeting')}{' '}
           <span className="hero__name glow-text">Miguel Roa</span>
         </motion.h1>
 
@@ -37,9 +41,15 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
         >
-          Desarrollador <span className="hero__highlight">Full Stack</span> apasionado por
-          crear experiencias digitales <span className="hero__highlight">innovadoras</span> y
-          <span className="hero__highlight"> funcionales</span>.
+          {tSegs('hero.subtitle').map((seg, i) => (
+            <Fragment key={i}>
+              {seg.hl ? (
+                <span className="hero__highlight">{seg.text}</span>
+              ) : (
+                seg.text
+              )}
+            </Fragment>
+          ))}
         </motion.p>
 
         <motion.div
@@ -49,10 +59,10 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.8 }}
         >
           <a href="#projects" className="hero__btn hero__btn--primary">
-            Ver proyectos
+            {tStr('hero.btnProjects')}
           </a>
           <a href="#contact" className="hero__btn hero__btn--secondary">
-            Contactame
+            {tStr('hero.btnContact')}
           </a>
         </motion.div>
 
