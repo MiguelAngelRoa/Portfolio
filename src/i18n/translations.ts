@@ -49,7 +49,7 @@ const en = {
   'projects.ird.desc': 'Corporate website for an industrial balancing and services company. Built with pure React for optimal performance and smooth navigation.',
   'projects.toro.desc': 'Investment and trading education platform. WordPress with a custom theme, guides, online courses, blog and newsletter for the financial community.',
   'projects.rutinapp.desc': 'Mobile app to manage workout routines with rest timer, weekly schedule, reminders and dark mode. Built with Expo and TypeScript.',
-  'projects.venecobot.desc': 'AI WhatsApp bot that understands Venezuelan slang and handles everyday tasks, like checking the official BCV dollar rate, the euro and the average Binance P2P dollar. It uses LangGraph to route every message to specialized agents from a graph-based supervisor.',
+  'projects.venecobot.desc': 'AI bot that understands Venezuelan slang and handles everyday tasks, like checking the official BCV dollar rate, the euro and the average Binance P2P dollar. It uses LangGraph to route every message to specialized agents from a graph-based supervisor.',
   'projects.alt': 'Screenshot of',
 
   'contact.label': '// Contact',
@@ -122,7 +122,7 @@ const es: TranslationDict = {
   'projects.ird.desc': 'Sitio web corporativo para empresa de balanceo y servicios industriales. Desarrollado con React puro para un rendimiento optimo y una experiencia de navegacion fluida.',
   'projects.toro.desc': 'Plataforma educativa de inversiones y trading. WordPress con tema personalizado, secciones de guias, cursos online, blog y newsletter para la comunidad financiera.',
   'projects.rutinapp.desc': 'App movil para gestionar rutinas de ejercicio con temporizador de descanso, agenda semanal, recordatorios y modo oscuro. Desarrollada con Expo y TypeScript.',
-  'projects.venecobot.desc': 'Bot de WhatsApp con IA que entiende la jerga venezolana y resuelve tareas de interes diario, como consultar el dolar oficial (BCV), el euro y el promedio del dolar en Binance P2P. Usa LangGraph para enrutar cada mensaje a agentes especializados desde un supervisor basado en grafos.',
+  'projects.venecobot.desc': 'Bot con IA que entiende la jerga venezolana y resuelve tareas de interes diario, como consultar el dolar oficial (BCV), el euro y el promedio del dolar en Binance P2P. Usa LangGraph para enrutar cada mensaje a agentes especializados desde un supervisor basado en grafos.',
   'projects.alt': 'Captura de',
 
   'contact.label': '// Contacto',
