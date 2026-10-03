@@ -84,11 +84,19 @@
 .projects__card-link {
   color: var(--gray-light);
   padding: 0.3rem;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .projects__card-link:hover {
   color: var(--green);
+}
+
+.projects__card:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
 }
 
 .projects__card-preview {
